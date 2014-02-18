@@ -1,3 +1,6 @@
+/**
+* @todo implement hash event handler 
+*/
 (function(window){
   var routes = [];
 
@@ -24,6 +27,8 @@
 
   function dispatch(url) {
     var length = routes.length;
+    if (length < 1) return;
+    
     for (var i = 0 ; i < length; i++) {
       //console.log(routes[i]);
       if (routes[i].regexp.test(url)) {
@@ -32,5 +37,24 @@
       }
     }
   };
-  window.hrouter = hrouter;
+
+  function addEvent(elem, event, fn) {
+    if (elem.addEventListener) {
+        elem.addEventListener(event, fn, false);
+    } else {
+        elem.attachEvent("on" + event, function() {
+            return(fn.call(elem, window.event));   
+        });
+    }
+  }
+
+  function trigger() {
+    var hash = location.hash.replace(/#/,"");
+    dispatch(hash);
+  }
+
+  addEvent('hashchange',trigger);
+  trigger();
+
+  window.hrouter = hrouter; 
 }(this));
