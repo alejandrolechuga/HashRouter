@@ -9,7 +9,6 @@
       , route  = {}
       , keys = []
       , regexp = pathtoregexp(path, keys);
-
     route.keys = keys;
     route.regexp = regexp;
     route.callback = fn;
@@ -28,7 +27,6 @@
   function dispatch(url) {
     var length = routes.length;
     if (length < 1) return;
-    
     for (var i = 0 ; i < length; i++) {
       //console.log(routes[i]);
       if (routes[i].regexp.test(url)) {
@@ -40,11 +38,11 @@
 
   function addEvent(elem, event, fn) {
     if (elem.addEventListener) {
-        elem.addEventListener(event, fn, false);
+      elem.addEventListener(event, fn, false);
     } else {
-        elem.attachEvent("on" + event, function() {
-            return(fn.call(elem, window.event));   
-        });
+      elem.attachEvent("on" + event, function() {
+          return(fn.call(elem, window.event));   
+      });
     }
   }
 
