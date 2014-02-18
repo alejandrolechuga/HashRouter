@@ -1,7 +1,4 @@
-/**
-* @todo implement hash event handler 
-*/
-(function(window){
+(function(window, undefined){
   var routes = [];
 
   function hrouter(path, fn) {
@@ -19,7 +16,7 @@
     path = path
     .replace(/\//,'')
     .replace(/:(\w+)(:?)/g,function (m, key) {
-      return '([^\/].*)';
+      return '\/([^\/].*)';
     });
     return new RegExp("^(?:" + path + ")$");
   };
@@ -52,7 +49,6 @@
   }
 
   addEvent('hashchange',trigger);
-  trigger();
-
+  hrouter.trigger = trigger;
   window.hrouter = hrouter; 
 }(this));
