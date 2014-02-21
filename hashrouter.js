@@ -44,21 +44,25 @@
   * @retun RegExp
   */
   function pathtoregexp(path, keys) {
+
     path = path
-      .replace(/(\(\/)?(\w+)?:(\w+)\)?/g, function (match, optional, fragment, key) {
-        console.log("replace arguments ", arguments);
+      .replace(/(\/)?$/,"")
+      .replace(/(?:\()?(\/)?(\w+)?:(\w+)(\))?/g, function (match, slash, fragment, key, optional) {
+        // console.log("option", optional);
+        // console.log("replace arguments ", arguments);
         var pattern;
+        slash = slash || '';
         if (fragment) {
-          pattern = '\/?' + fragment + '([^\/].*)';
+          pattern = slash + fragment + '([^\/].*)';
         } else {
-          pattern =  '\/?([^\/].*)';
+          pattern = slash + '([^\/].*)';
         }
         if (optional) {
-          pattern += '?';
+          pattern = "(?:\/([^\/].*))?";
         } 
         return pattern;
     });
-    return new RegExp("^" + path + "$");
+    return new RegExp("^" + path + "\/?$");
   };
   
   /**
@@ -125,12 +129,13 @@
   console.log("urlpath ", urlpath);
   var pattern = pathtoregexp(urlpath, {});
   console.log("url to pattern", pattern);
-  var matches =  pattern.exec("route/12");
+  var matches = pattern.exec("route/12");
   console.log("matches ", matches);
   console.log(matches[1] = 12);
-  var matches =  pattern.exec("route/12/12134");
+  var matches = pattern.exec("route/12/12134");
   console.log("matches ", matches);
-  console.log(matches[1] == 12, matches[2] == 12134)
+  console.log(matches[1] == 12, matches[2] == 12134);
+
   /**
   * @method addEvent
   * @param elem DOMElement
@@ -145,8 +150,6 @@
     }
   }
   // Tests 
-
-
 
   /**
   * @method trigger
