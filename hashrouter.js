@@ -14,6 +14,11 @@
       , keys = []
       , regexp ;
 
+    //if there's no arguments then we dispatch the current route
+    if (arguments.length == 0) {
+      trigger();
+      return; 
+    }
     // No path specified we assume is the root path
     if (typeof path == 'function') {
       // fn to function 
@@ -30,7 +35,7 @@
     }
 
     regexp = pathtoregexp(path, keys);
-    console.log("REGEXP ", regexp);
+    //console.log("REGEXP ", regexp);
     route.keys = keys;
     route.regexp = regexp;
     route.callback = fn;

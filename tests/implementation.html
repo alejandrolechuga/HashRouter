@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tests</title>
+  <link rel="stylesheet" href="qunit.css">
+</head>
+<body>
+  <ul>
+    <li>
+      <a href="#home">Home</a>
+      <a href="#home/1">Home 1</a>
+      <a href="#greetings/page2">Greetings Page 2</a>
+      <a href="#greetings/page4">Greetings Page 4</a>
+      <a href="#greetings/page5/foo">Greetings Page 5</a>
+      <a href="#search/helloworld">Search Hello World</a>
+      <a href="#user">User Unknown</a>
+      <a href="#user/1">User Alejandro</a>
+    </li>
+  </ul>
+  <h3 id="text"></h3>
+  <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src="../hashrouter.js"></script>
+  <script>
+    $(function () {
+
+      hrouter("home", function () {
+        $('#text').html("Home ! ")
+      });
+
+      hrouter("home/:page", function (page) {
+        $('#text').html("Home page #" + page);
+      });
+
+      hrouter("greetings/page:number", function(number) {
+        $('#text').html("Home page # " + number);
+      });
+
+      hrouter("greetings/page:number/:section", function(number, section) {
+        $('#text').html("Home page # " + number + " section " + section);
+      });
+
+      hrouter("search/*",function (search) {
+        $('#text').html(" Find this text *" + search + "*");
+      });
+
+      hrouter("user/:id?", function (id) {
+        if (id) {
+          $('#text').html("Alejandro's id is" + id);
+        } else {
+          $('#text').html("User not found");
+        } 
+      }, function (id) {
+        if (id) {
+          document.title = "Alejandro's Profile";
+        } else {
+          document.title = "Unknown Profile";
+        }
+      });
+
+      hrouter();
+    });
+  </script>
+</body>
+</html>
