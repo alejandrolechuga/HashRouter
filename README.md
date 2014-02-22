@@ -1,4 +1,5 @@
-<h2>HashRouter.js</h2>
+HashRouter.js
+=========
 Simple hash routing library, doesn't require any dependency. 
 <h3>Routing</h3>
 ```javascript
