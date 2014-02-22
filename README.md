@@ -1,5 +1,5 @@
 <h2>HashRouter.js</h2>
-Simple hash routing library, doesn't require any dependencie. 
+Simple hash routing library, doesn't require any dependency. 
 <h3>Routing</h3>
 ```javascript
 hrouter("home", function () {
