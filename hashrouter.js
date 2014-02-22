@@ -15,10 +15,14 @@
       , regexp ;
 
     //if there's no arguments then we dispatch the current route
-    if (arguments.length == 0) {
+    if (arguments.length === 0) {
       trigger();
       return; 
+    } else if (arguments.length === 1 && typeof path != "function") {
+      trigger(String(path));
+      return;
     }
+
     // No path specified we assume is the root path
     if (typeof path == 'function') {
       // fn to function 
@@ -103,18 +107,16 @@
       });
     }
   }
-  // Tests 
 
   /**
   * @method trigger
   * @return void
   */
-  function trigger() {
-    var hash = location.hash.replace(/#/,"");
+  function trigger(hash) {
+    var hash = hash || location.hash.replace(/#/,"");
     dispatch(hash);
   }
 
   addEvent(window,'hashchange',trigger);
-  hrouter.trigger = trigger;
-  window.hrouter = hrouter; 
+  window.hrouter = hrouter;
 }(this));

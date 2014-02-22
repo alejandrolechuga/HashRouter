@@ -49,3 +49,7 @@ hrouter("user/:id?", function (id) {
 ```javascript
 hrouter();
 ```
+<h3>Dispatch</h3>
+```javascript
+hrouter("user/1");
+```
