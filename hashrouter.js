@@ -14,7 +14,7 @@
       , keys = []
       , regexp ;
 
-    //if there's no arguments then we dispatch the current route
+    //if there are no arguments then we dispatch the current route
     if (arguments.length === 0) {
       trigger();
       return; 
