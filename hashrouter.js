@@ -113,7 +113,8 @@
   * @return void
   */
   function trigger(hash) {
-    var hash = hash || location.hash.replace(/#/,"");
+    var hash = typeof hash == "string" ?  hash : location.hash.replace(/#/,"");
+    console.log("dispatch", hash);
     dispatch(hash);
   }
 

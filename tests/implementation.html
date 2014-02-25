@@ -25,10 +25,12 @@
     $(function () {
 
       hrouter("home", function () {
+        console.log("home");
         $('#text').html("Home ! ");
       });
 
       hrouter("home/:page", function (page) {
+        console.log("home/page");
         $('#text').html("Home page #" + page);
       });
 
