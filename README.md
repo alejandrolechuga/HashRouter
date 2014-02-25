@@ -55,3 +55,13 @@ hrouter();
 ```javascript
 hrouter("user/1");
 ```
+<h3>Break next matches </h3>
+```javascript
+hrouter("home/:page", function (page) {
+  $('#text').html("Home page #" + page);
+  return false;
+});
+hrouter("home/:page", function (page) {
+  $('#text').html("Home page = " + page);
+});
+```
