@@ -2,15 +2,14 @@ HashRouter.js
 =========
 Simple hash routing library, doesn't require any dependency. It routes strings after the symbol "#".
 <h3>Routing</h3>
-```javascript
 url : http://localhost/index.html#home
+```javascript
 hrouter("home", function () {
   $('#text').html("Home ! ");
 });
-
-url : http://localhost/index.html#home/1
 ```
 <h3>Parameters</h3>
+url : http://localhost/index.html#home/1
 ```javascript
 hrouter("home/:page", function (page) {
   $('#text').html("Home page #" + page);
