@@ -1,6 +1,6 @@
 HashRouter.js
 =========
-Simple hash routing library, doesn't require any dependency. It routes after urls after the "#" hash.
+Simple hash routing library, doesn't require any dependency. It routes strings after the symbol "#".
 <h3>Routing</h3>
 ```javascript
 url : http://localhost/index.html#home
