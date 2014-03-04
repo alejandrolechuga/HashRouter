@@ -3,6 +3,8 @@
   var routes = [];
 
   /** 
+  * Defines the routes
+  * Routes if the given parameter is just an url
   * @method hrouter
   * @param path url pattern
   * @param fn callback
@@ -47,10 +49,11 @@
   }
 
   /**
+  * Converts the route pattern to a Regular Expression
   * @method pathtoregexp
   * @param path url route pattern
   * @param keys reference to the url paceholders
-  * @retun RegExp
+  * @retun {RegExp}
   */
   function pathtoregexp(path, keys) {
     path = path
@@ -75,6 +78,7 @@
   };
   
   /**
+  * Matches the url with the stored patterns 
   * @method dispatch
   * @params url 
   * @return void
@@ -95,6 +99,7 @@
   };
 
   /**
+  * Cross Browser Eventlistener 
   * @method addEvent
   * @param elem DOMElement
   */ 
@@ -109,8 +114,8 @@
   }
 
   /**
+  * Event handler
   * @method trigger
-  * @return void
   */
   function trigger(hash) {
     var hash = hash || location.hash.replace(/#/,"");
