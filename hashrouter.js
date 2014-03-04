@@ -86,16 +86,27 @@
   function dispatch(url) {
     var 
         length = routes.length
-      , matches;
+      , matches
+      , __break = false;
     for (var i = 0 ; i < length; i++) {
       matches = routes[i].regexp.exec(url);
       if (matches) {
         routes[i].callback;
         routes[i].callback.some(function(fn) {
-          fn.apply(routes[i], matches.slice(1, matches.length));
+          if (fn.apply(routes[i], matches.slice(1, matches.length)) === false) {
+            // Breaks the iterator
+            __break = true;
+            return false;
+          }
         });
       }
+      // Breaks the next matchs 
+      if (__break) {
+        console.log("continue");
+        break;
+      }
     }
+
   };
 
   /**
@@ -118,7 +129,8 @@
   * @method trigger
   */
   function trigger(hash) {
-    var hash = hash || location.hash.replace(/#/,"");
+    var hash = typeof hash == "string" ?  hash : location.hash.replace(/#/,"");
+    console.log("dispatch", hash);
     dispatch(hash);
   }
 

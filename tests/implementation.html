@@ -25,17 +25,22 @@
     $(function () {
 
       hrouter("home", function () {
+        console.log("home");
         $('#text').html("Home ! ");
       });
 
       hrouter("home/:page", function (page) {
+        console.log("home/page");
         $('#text').html("Home page #" + page);
       });
 
       hrouter("greetings/page:number", function(number) {
         $('#text').html("Home page # " + number);
+        return false;
       });
-
+      hrouter("greetings/page:number", function(number) {
+        $('#text').html("Home page # > " + number);
+      });
       hrouter("greetings/page:number/:section", function(number, section) {
         $('#text').html("Home page # " + number + " section " + section);
       });
